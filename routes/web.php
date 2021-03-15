@@ -14,17 +14,17 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::namespace('App\Http\Controllers\Site') -> group(function(){
-    Route::get('/','HomeController');
+    Route::get('/','HomeController')->name(name:'site.home');
 
-    Route::get('produtos', 'CategoryController@index');
-    Route::get('produtos/{slug}', 'CategoryController@show');
+    Route::get('produtos', 'CategoryController@index')->name(name:'site.products');
+    Route::get('produtos/{slug}', 'CategoryController@show')->name(name:'site.products.category');
     
-    Route::get('blog', 'BlogController');
+    Route::get('blog', 'BlogController')->name(name:'site.blog');
     //chamando diretamente um view por ser uma página estática
-    Route::view('sobre', 'site.about.index');
+    Route::view('sobre', 'site.about.index')->name(name:'site.about');
 
-    Route::get('contato', 'ContactController@index');
-    Route::post('contato', 'ContactController@form');
+    Route::get('contato', 'ContactController@index')->name(name:'site.contact');
+    Route::post('contato', 'ContactController@form')->name(name:'site.contact.form');
 
 });
 
