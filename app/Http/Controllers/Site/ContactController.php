@@ -2,8 +2,13 @@
 
 namespace App\Http\Controllers\Site;
 
+use App\Models\Contact;
 use App\Http\Controllers\Controller;
+use App\Notifications\InvoicePaid;
+use App\Notifications\NewContact;
 use Illuminate\Http\Request;
+use Illuminate\Notifications\Notification;
+
 
 class ContactController extends Controller
 {
@@ -19,7 +24,12 @@ class ContactController extends Controller
 
     public function form(Request $request)
     {
-        //
+        $contact = Contact :: create($request -> all());
+
+        // Notification::route('mail', config('mail.from.address')) //não consegue reconhecer o comando route
+        //     ->notify(new NewContact($contact));
+
+        ddd($contact);
     }
 
 }
